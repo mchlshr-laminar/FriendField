@@ -23,15 +23,15 @@ Field::Field(int nodeCount, int maxFriends)
   FriendRandomizer initializer(nodeList, maxFriends);
   initializer.makeMatches();
   
-  //movieMaker = new Visualizer(nodeList);
-  /*movieMaker->addMovieFrame(nodeList);*/
+  movieMaker = new Visualizer(nodeList);
+  movieMaker->addMovieFrame(nodeList);
 }
 
 Field::~Field()
 {
   for(unsigned int i = 0; i < nodeList.size(); i++)
     delete nodeList[i];
-  //delete movieMaker;
+  delete movieMaker;
 }
 
 int Field::nodeCount()
@@ -58,7 +58,7 @@ void Field::run(bool storeData)
   }
   
   int run = 0;
-  //movieMaker->createImage("initial_state.png", nodeList);
+  movieMaker->createImage("initial_state.png", nodeList);
   if(storeData)
   {
     DataExporter::getExporter()->submitData("Initial Clustering Coeff", computeClusteringCoefficient());
@@ -73,7 +73,7 @@ void Field::run(bool storeData)
     }
     if(!hasChanged) break;
   }
-  //movieMaker->createImage("final_state.png", nodeList);
+  movieMaker->createImage("final_state.png", nodeList);
   
   
   /*if(run == 5001 && storeData)
@@ -101,7 +101,7 @@ bool Field::tryNode(SocialNode* node)
     if(SocialNode::considerFriendship(node, *match_itr))
     {
       hasChanged = true;
-      //movieMaker->addMovieFrame(nodeList);
+      movieMaker->addMovieFrame(nodeList);
     }
     //hasChanged = hasChanged || SocialNode::considerFriendship(node, *match_itr);
   }

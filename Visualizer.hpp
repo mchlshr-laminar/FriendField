@@ -1,5 +1,5 @@
-#include "../../OpenCV-2.4.0/include/opencv/cv.h"
-#include "../../OpenCV-2.4.0/include/opencv/highgui.h"
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui.hpp>
 #include "SocialNode.hpp"
 #include <vector>
 #include <string>

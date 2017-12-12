@@ -10,6 +10,9 @@ int NeighborhoodFinder::reachabilityMode = NeighborhoodFinder::GLOBAL;
 void NeighborhoodFinder::setReachabilityMode(int new_mode)
 { reachabilityMode = new_mode; }
 
+int NeighborhoodFinder::getReachabilityMode()
+{ return reachabilityMode; }
+
 set<SocialNode*>* NeighborhoodFinder::getNeighborhood(SocialNode* origin, vector<SocialNode*>& availableNodes)
 {
   set<SocialNode*>* result = new set<SocialNode*>;

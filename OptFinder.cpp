@@ -45,7 +45,7 @@ void OptFinder::add_cols(vector<SocialNode*>& nodes)
         colname << i << "->" << j << "->" << k;
         glp_set_col_name(linear_program, ind, colname.str().c_str());
         glp_set_col_bnds(linear_program, ind, GLP_FR, 0.0, 0.0); //Two-hop vars are only restricted by the one-hop vars
-        double coef = 2*SocialNode::levelTwoAlpha*SocialNode::computeImmediateUtility(nodes[i], nodes[k])
+        double coef = 2*SocialNode::levelTwoAlpha*SocialNode::computeImmediateUtility(nodes[i], nodes[k]);
         glp_set_obj_coef(linear_program, ind, coef);
       }
     }

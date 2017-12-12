@@ -19,22 +19,6 @@ int main(int nargs, char** args)
   srand(time(NULL));
   parse_arguments(args+1, nargs-1);
   
-  /*CoordinateRandomizer::setDistributionMode(CoordinateRandomizer::UNIFORM);
-  NeighborhoodFinder::setReachabilityMode(NeighborhoodFinder::GLOBAL);
-  SocialNode::setFriendshipMode(SocialNode::ASYMMETRIC_FRIENDSHIP);
-  SocialNode::setUtilityMode(SocialNode::FRIENDS_OF_FRIENDS);
-  SocialNode::setUtilityFunction(SocialNode::INVERSE);*/
-  
-  /*int temp = SocialNode::utilityMode;
-  SocialNode::setUtilityMode(SocialNode::IMMEDIATE_UTILITY);
-  int temp2 = NeighborhoodFinder::reachabilityMode;
-  NeighborhoodFinder::setReachabilityMode(NeighborhoodFinder::GLOBAL);
-  Field friendField(100, 3);
-  friendField.run(false);
-  SocialNode::setUtilityMode(temp);
-  NeighborhoodFinder::setReachabilityMode(temp2);
-  friendField.run(true);*/
-  
   std::string filename = "data/";
   for(int i = 1; i < nargs; i++)
   {
@@ -45,18 +29,16 @@ int main(int nargs, char** args)
   
   for(int i = 0; i < 100; i++)
   {
-    /*Field friendField(100, 3);
-    friendField.run(true);
-    int temp = SocialNode::utilityMode;
-    SocialNode::setUtilityMode(SocialNode::IMMEDIATE_UTILITY);
-    friendField.run(false);
-    SocialNode::setUtilityMode(temp);*/
     Field friendField(100, 3);
     int t1 = SocialNode::utilityMode;
-    int t2 = NeighborhoodFinder::reachabilityMode;
+    int t2 = NeighborhoodFinder::getReachabilityMode();
+    
+    //Set up initial state
     SocialNode::setUtilityMode(SocialNode::IMMEDIATE_UTILITY);
     NeighborhoodFinder::setReachabilityMode(NeighborhoodFinder::GLOBAL);
     friendField.run(false);
+    
+    //Run the simulation
     SocialNode::setUtilityMode(t1);
     NeighborhoodFinder::setReachabilityMode(t2);
     friendField.run(true);

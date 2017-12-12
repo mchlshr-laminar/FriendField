@@ -14,6 +14,7 @@ class NeighborhoodFinder
   const static int GLOBAL = 0, TWO_AWAY = 1;
   
   static void setReachabilityMode(int new_mode);
+  static int getReachabilityMode();
   static std::set<SocialNode*>* getNeighborhood(SocialNode* origin, std::vector<SocialNode*>& availableNodes);
   
   static int getDistanceNeighborhood(SocialNode* origin, std::set<SocialNode*>& neighbors, int dist);
